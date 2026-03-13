@@ -1,0 +1,7 @@
+{
+  "name": "Remix: RunIt!",
+  "description": "Find and join pickup basketball games in the UC Berkeley area.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
