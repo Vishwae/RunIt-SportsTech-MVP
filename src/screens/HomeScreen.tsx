@@ -27,19 +27,13 @@ export default function HomeScreen() {
     return Array.from({ length: 7 }, (_, i) => addDays(new Date(), i));
   }, []);
 
-  useEffect(() => {
-    if (!hasCompletedSurvey) {
-      const timer = setTimeout(() => setShowSurvey(true), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [hasCompletedSurvey]);
-
   const handleSurveyComplete = (level: 'Beginner' | 'Intermediate' | 'Advanced') => {
     setUserSkillLevel(level);
     setHasCompletedSurvey(true);
     setShowSurvey(false);
     CURRENT_USER.skill_level = level;
     CURRENT_USER.has_completed_survey = true;
+    setShowMatchmaker(true);
   };
 
   const filteredGames = useMemo(() => {
@@ -101,7 +95,13 @@ export default function HomeScreen() {
       {/* Find Me a Game Button */}
       <div className="mb-6">
         <button
-          onClick={() => setShowMatchmaker(true)}
+          onClick={() => {
+            if (!hasCompletedSurvey) {
+              setShowSurvey(true);
+            } else {
+              setShowMatchmaker(true);
+            }
+          }}
           className="w-full bg-accent-primary p-4 rounded-2xl flex items-center justify-between group relative overflow-hidden accent-glow"
         >
           <div className="relative z-10 flex items-center gap-4">

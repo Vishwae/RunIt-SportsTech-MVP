@@ -59,11 +59,6 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
             <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${skillColors[game.skill_level]}`}>
               {game.skill_level}
             </span>
-            {game.fee > 0 && (
-              <span className="text-[10px] font-black text-status-green bg-status-green-muted px-2 py-1 rounded-lg flex items-center">
-                ${game.fee} Fee
-              </span>
-            )}
             {game.is_wager && (
               <span className="text-[10px] font-black text-status-yellow bg-status-yellow-muted px-2 py-1 rounded-lg flex items-center gap-1">
                 <Trophy size={10} /> ${game.wager_amount} Wager

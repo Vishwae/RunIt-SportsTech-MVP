@@ -53,6 +53,7 @@ export default function App() {
             <Route path="/" element={<HomeScreen />} />
             <Route path="/game/:id" element={<GameDetailsScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />
+            <Route path="/profile/:userId" element={<ProfileScreen />} />
             <Route path="/create" element={<CreateGameScreen />} />
             <Route path="/upcoming" element={<UpcomingScreen />} />
             <Route path="/notifications" element={<NotificationsScreen />} />

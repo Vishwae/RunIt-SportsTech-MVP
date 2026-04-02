@@ -20,6 +20,10 @@ export default function GameDetailsScreen() {
   const court = getCourtById(game.court_id);
   const host = getUserById(game.host_id);
   const participants = getParticipantsForGame(game.game_id);
+  
+  const navigateToProfile = (userId: string) => {
+    navigate(`/profile/${userId}`);
+  };
   const approvedParticipants = participants.filter(p => p.join_status === 'approved');
   const waitlistedParticipants = participants.filter(p => p.join_status === 'waitlisted');
   
@@ -102,19 +106,6 @@ export default function GameDetailsScreen() {
       {/* Content */}
       <div className="px-4 -mt-4 relative z-30">
         <div className="bg-bg-card border border-border-primary rounded-3xl p-6 shadow-2xl space-y-6">
-          {/* Commitment Fee Alert */}
-          {game.fee > 0 && (
-            <div className="bg-status-green-muted border border-status-green/20 rounded-2xl p-4 flex items-start gap-3">
-              <DollarSign size={20} className="text-status-green shrink-0 mt-0.5" />
-              <div>
-                <p className="text-sm font-bold text-status-green">${game.fee} Commitment Fee</p>
-                <p className="text-[10px] text-status-green/80 leading-tight mt-0.5">
-                  To ensure everyone shows up, a small fee is required. This is refunded if you attend or if the game is cancelled.
-                </p>
-              </div>
-            </div>
-          )}
-
           {/* Wager Alert */}
           {game.is_wager && (
             <div className="bg-status-yellow-muted border border-status-yellow/20 rounded-2xl p-4 flex items-start gap-3">
@@ -194,13 +185,14 @@ export default function GameDetailsScreen() {
               {approvedParticipants.map((p, i) => {
                 const user = getUserById(p.user_id);
                 return (
-                  <div 
+                  <button 
                     key={p.user_id} 
-                    className="w-10 h-10 rounded-full border-2 border-bg-card bg-bg-elevated flex items-center justify-center text-xs font-bold text-text-secondary overflow-hidden"
+                    onClick={() => navigateToProfile(p.user_id)}
+                    className="w-10 h-10 rounded-full border-2 border-bg-card bg-bg-elevated flex items-center justify-center text-xs font-bold text-text-secondary overflow-hidden hover:scale-110 transition-transform"
                     style={{ zIndex: 10 - i }}
                   >
                     {user?.full_name.charAt(0)}
-                  </div>
+                  </button>
                 );
               })}
             </div>
@@ -213,9 +205,13 @@ export default function GameDetailsScreen() {
                 {waitlistedParticipants.map(p => {
                   const user = getUserById(p.user_id);
                   return (
-                    <div key={p.user_id} className="w-8 h-8 rounded-full bg-bg-elevated border border-border-primary flex items-center justify-center text-[10px] font-bold text-text-tertiary">
+                    <button 
+                      key={p.user_id} 
+                      onClick={() => navigateToProfile(p.user_id)}
+                      className="w-8 h-8 rounded-full bg-bg-elevated border border-border-primary flex items-center justify-center text-[10px] font-bold text-text-tertiary hover:scale-110 transition-transform"
+                    >
                       {user?.full_name.charAt(0)}
-                    </div>
+                    </button>
                   );
                 })}
               </div>

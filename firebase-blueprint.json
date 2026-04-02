@@ -1,0 +1,40 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "user_id": { "type": "string" },
+        "full_name": { "type": "string" },
+        "profile_photo_url": { "type": "string" },
+        "skill_level": { "type": "string", "enum": ["Beginner", "Intermediate", "Advanced"] },
+        "bio": { "type": "string" },
+        "friend_count": { "type": "integer" }
+      },
+      "required": ["user_id", "full_name"]
+    },
+    "Friendship": {
+      "title": "Friendship",
+      "description": "Friendship between two users",
+      "type": "object",
+      "properties": {
+        "users": { "type": "array", "items": { "type": "string" } },
+        "status": { "type": "string", "enum": ["pending", "accepted"] },
+        "requester_id": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["users", "status", "requester_id"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents"
+    },
+    "/friendships/{friendshipId}": {
+      "schema": "Friendship",
+      "description": "Friendship documents"
+    }
+  }
+}

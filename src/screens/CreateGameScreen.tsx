@@ -167,40 +167,21 @@ export default function CreateGameScreen() {
             </div>
           </div>
 
-          {/* Max Players & Fee */}
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-black uppercase tracking-widest text-text-tertiary mb-3 px-1">Max Players</label>
-              <div className="relative">
-                <Users size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-tertiary" />
-                <select 
-                  className="w-full bg-bg-card border border-border-primary rounded-xl py-3 pl-11 pr-10 text-sm text-text-primary focus:border-accent-primary outline-none appearance-none"
-                  value={formData.max_players}
-                  onChange={(e) => setFormData({ ...formData, max_players: e.target.value })}
-                >
-                  {[2, 4, 6, 8, 10, 12, 15, 20, 22].map(n => (
-                    <option key={n} value={n}>{n} Players</option>
-                  ))}
-                </select>
-                <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-text-tertiary pointer-events-none" />
-              </div>
-            </div>
-            <div>
-              <label className="block text-xs font-black uppercase tracking-widest text-text-tertiary mb-3 px-1">Commitment Fee</label>
-              <div className="relative">
-                <DollarSign size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-tertiary" />
-                <select 
-                  className="w-full bg-bg-card border border-border-primary rounded-xl py-3 pl-11 pr-10 text-sm text-text-primary focus:border-accent-primary outline-none appearance-none"
-                  value={formData.fee}
-                  onChange={(e) => setFormData({ ...formData, fee: e.target.value })}
-                >
-                  <option value="0">Free</option>
-                  <option value="1">$1.00</option>
-                  <option value="2">$2.00</option>
-                  <option value="5">$5.00</option>
-                </select>
-                <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-text-tertiary pointer-events-none" />
-              </div>
+          {/* Max Players */}
+          <div>
+            <label className="block text-xs font-black uppercase tracking-widest text-text-tertiary mb-3 px-1">Max Players</label>
+            <div className="relative">
+              <Users size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-tertiary" />
+              <select 
+                className="w-full bg-bg-card border border-border-primary rounded-xl py-3 pl-11 pr-10 text-sm text-text-primary focus:border-accent-primary outline-none appearance-none"
+                value={formData.max_players}
+                onChange={(e) => setFormData({ ...formData, max_players: e.target.value })}
+              >
+                {[2, 4, 6, 8, 10, 12, 15, 20, 22].map(n => (
+                  <option key={n} value={n}>{n} Players</option>
+                ))}
+              </select>
+              <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-text-tertiary pointer-events-none" />
             </div>
           </div>
 
